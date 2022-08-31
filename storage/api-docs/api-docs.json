@@ -1,0 +1,390 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Syloper - Desafio Backend",
+        "description": " Este proyecto desarrollado en laravel 8 contiene un endpoint para autenticar usuarios a través de JWT. Además posee una API Rest de ABM de Posts",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/register": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Registrar nuevo usuario",
+                "operationId": "6795f2f85dc8207154329e145be90507",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario creado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error ."
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Cerrar sesión de usuario",
+                "operationId": "80dc31d133a26824da13849a3b19cfba",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "token": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario desconectado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "success": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error ."
+                    }
+                }
+            }
+        },
+        "/api/v1/get-user": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "obtener un usuario",
+                "operationId": "0f6656e89af259894f376733400ad737",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "token": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario creado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error ."
+                    }
+                }
+            }
+        },
+        "/api/v1/posts": {
+            "get": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Mostrar el listado de posts",
+                "description": "Display a listing of the resource.\nMostramos el listado de los regitros solicitados.",
+                "operationId": "57b722591482ca412062be61d2162f86",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas los posts."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/posts": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Registrar nuevo post",
+                "operationId": "51ffff9f55ca06e6beb1694d3f59c81d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "titulo": {
+                                                "type": "string"
+                                            },
+                                            "slug": {
+                                                "type": "string"
+                                            },
+                                            "imagen": {
+                                                "type": "string"
+                                            },
+                                            "descripcion": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario creado."
+                    },
+                    "400": {
+                        "description": "Error ."
+                    }
+                }
+            }
+        },
+        "/api/v1/posts/{slug}": {
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Mostrar info de un post",
+                "description": "Display the specified resource.\nMuestra el registro solicitado",
+                "operationId": "0166127e153530da510ac5188a69ce0d",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Parámetro necesario para la consulta de datos de un post",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token jwt necesario para la consulta de datos de un post",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar info de un post."
+                    },
+                    "404": {
+                        "description": "Post no existe."
+                    },
+                    "505": {
+                        "description": "Token has expired ."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/v1/posts/{id}": {
+            "put": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Modificar de un post",
+                "operationId": "80017ed0683ebea3733366e77594f6cc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id del post a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token jwt necesario para la modificacion de datos de un post",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "titulo": {
+                                                "type": "string"
+                                            },
+                                            "slug": {
+                                                "type": "string"
+                                            },
+                                            "descripcion": {
+                                                "type": "string"
+                                            },
+                                            "imagen": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Error."
+                    },
+                    "401": {
+                        "description": "Authorization Token not found."
+                    },
+                    "505": {
+                        "description": "Token has expired ."
+                    },
+                    "200": {
+                        "description": "Post modificado correctamente."
+                    }
+                }
+            }
+        },
+        "/api/posts/{id}": {
+            "delete": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Eliminar  un post",
+                "operationId": "c5564ee66c29e6c5b6dde5f532cb7b02",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "token jwt necesario para la eliminacion de datos de un post",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Parámetro necesario para la eliminacion de un post",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Error."
+                    },
+                    "401": {
+                        "description": "Authorization Token not found."
+                    },
+                    "505": {
+                        "description": "Token has expired ."
+                    },
+                    "200": {
+                        "description": "post borrado correctamente."
+                    }
+                }
+            }
+        }
+    }
+}
